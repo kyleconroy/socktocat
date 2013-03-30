@@ -9,7 +9,7 @@
 		<div id="wrapper">
 			<header>
 				<h1>Socktocat</h1>
-				<p>Realtime Github repo events via Websockets</p>
+				<p>Realtime Github repo events via Websockets. Events are retreived from Github every ~60 seconds</p>
 			</header>
 			<div class="highlight"><pre><span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">&#39;ws://socktocat.org/hooks?repo={owner}/{repo}&#39;</span><span class="p">);</span>
 <br/>
