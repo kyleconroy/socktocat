@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Socktocat: Realtime Github Updates</title>
+		<link type="text/css" rel="stylesheet" href="/static/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="/static/style.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<h1>Socktocat</h1>
+				<p>Realtime Github repo events via Websockets</p>
+			</header>
+			<div class="highlight"><pre><span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">&#39;ws://socktocat.org/hooks?repo={owner}/{repo}&#39;</span><span class="p">);</span>
+<br/>
+<span class="c1">// Log events from Github</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">events</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// An array of Github events</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">events</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+			<form id="repo">
+				Recent events for <input type="text" name="owner" value="Shopify" /> / 
+				<input type="text" name="repo" value="dashing" />
+			</form>
+			<table class="table table-condensed">
+				<thead>
+					<th>Id</th>
+					<th>Event Type</th>
+					<th>Created</th>
+				</thead>
+				<tbody id="events">
+				</tbody>
+			</table>
+		</div>
+		<a href="https://github.com/kyleconroy/socktocat"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+		<script type="text/javascript" src="/static/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/static/hook.js"></script>
+	</body>
+</html>
